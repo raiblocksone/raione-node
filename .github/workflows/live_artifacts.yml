@@ -4,7 +4,7 @@ on:
     inputs:
       repo:
         description: "repo"
-        default: "raiblocksone/raiblocksone-node"
+        default: "raiblocksone/raione-node"
         required: true
       ref:
         description: "tag to build"
@@ -31,10 +31,10 @@ jobs:
         env:
           COMPILER: gcc
         run: ci/actions/linux/install_deps.sh
-      - name: Build Docker (raiblocksone/raiblocksone)
+      - name: Build Docker (raiblocksone/raione)
         run: CI_TAG=${TAG} ci/actions/linux/docker-build.sh
-      - name: Deploy Docker Hub (raiblocksone/raiblocksone)
-        if: ${{ github.repository == 'raiblocksone/raiblocksone-node' }}
+      - name: Deploy Docker Hub (raiblocksone/raione)
+        if: ${{ github.repository == 'raiblocksone/raione-node' }}
         run: CI_TAG=${TAG} ci/actions/linux/docker-deploy.sh
         env:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
