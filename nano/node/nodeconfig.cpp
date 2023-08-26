@@ -15,7 +15,8 @@ namespace
 char const * preconfigured_peers_key = "preconfigured_peers";
 char const * signature_checker_threads_key = "signature_checker_threads";
 char const * pow_sleep_interval_key = "pow_sleep_interval";
-std::string const default_live_peer_network = nano::get_env_or_default ("NANO_DEFAULT_PEER", "peering.nano.org");
+//std::string const default_live_peer_network = nano::get_env_or_default ("NANO_DEFAULT_PEER", "peering.nano.org");
+std::string const default_live_peer_network = nano::get_env_or_default ("NANO_DEFAULT_PEER", ""); // add IP-addresses
 std::string const default_beta_peer_network = nano::get_env_or_default ("NANO_DEFAULT_PEER", "peering-beta.nano.org");
 std::string const default_test_peer_network = nano::get_env_or_default ("NANO_DEFAULT_PEER", "peering-test.nano.org");
 }
@@ -59,15 +60,12 @@ nano::node_config::node_config (const std::optional<uint16_t> & peering_port_a, 
 			break;
 		}
 		case nano::networks::nano_live_network:
-			preconfigured_peers.emplace_back (default_live_peer_network);
-			preconfigured_representatives.emplace_back ("A30E0A32ED41C8607AA9212843392E853FCBCB4E7CB194E35C94F07F91DE59EF");
-			preconfigured_representatives.emplace_back ("67556D31DDFC2A440BF6147501449B4CB9572278D034EE686A6BEE29851681DF");
-			preconfigured_representatives.emplace_back ("5C2FBB148E006A8E8BA7A75DD86C9FE00C83F5FFDBFD76EAA09531071436B6AF");
-			preconfigured_representatives.emplace_back ("AE7AC63990DAAAF2A69BF11C913B928844BF5012355456F2F164166464024B29");
-			preconfigured_representatives.emplace_back ("BD6267D6ECD8038327D2BCC0850BDF8F56EC0414912207E81BCF90DFAC8A4AAA");
-			preconfigured_representatives.emplace_back ("2399A083C600AA0572F5E36247D978FCFC840405F8D4B6D33161C0066A55F431");
-			preconfigured_representatives.emplace_back ("2298FAB7C61058E77EA554CB93EDEEDA0692CBFCC540AB213B2836B29029E23A");
-			preconfigured_representatives.emplace_back ("3FE80B4BC842E82C1C18ABFEEC47EA989E63953BC82AC411F304D13833D52A56");
+			//preconfigured_peers.emplace_back (default_live_peer_network);
+			preconfigured_peers.emplace_back ("5.75.155.89");
+			preconfigured_peers.emplace_back ("135.181.99.50");
+			preconfigured_representatives.emplace_back ("17B4FB61A5384526D9F78F5ACD46268604289FEA60C68FA95F56958060440E8A");
+			preconfigured_representatives.emplace_back ("27450B6605F1638252EC08834EFF5DD679D3CE53B0418F8EB0AF2CA3AAE87154");
+			preconfigured_representatives.emplace_back ("DE82B719D3A7A18F8228B895777B4772E16CD200EB1929B8CF278961DAE1CF2E");
 			break;
 		case nano::networks::nano_test_network:
 			preconfigured_peers.push_back (default_test_peer_network);

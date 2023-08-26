@@ -64,30 +64,17 @@ void nano::test::rate_observer::background_print_impl (std::chrono::seconds inte
 
 void nano::test::rate_observer::print_once ()
 {
-	std::stringstream ss;
-
-	ss << "-----------------------------------------------------------------------------------------------------------------------"
-	   << "\n";
-
 	for (auto & counter : counters)
 	{
 		const auto observation = counter->observe ();
+
 		// Convert delta milliseconds to seconds (double precision) and then divide the counter delta to get rate per second
 		auto per_sec = observation.delta / (observation.time_delta.count () / 1000.0);
-		auto prettier_name = "'" + counter->name + "'";
 
-		ss << "counter: " << std::setw (50) << std::left << prettier_name
-		   << " | "
-		   << "total: " << std::setw (14) << observation.total
-		   << " | "
-		   << "rate /s: " << std::setw (12) << std::setprecision (2) << std::fixed << per_sec
-		   << "\n";
+		std::cout << "rate of '" << counter->name << "': "
+				  << std::setw (12) << std::setprecision (2) << std::fixed << per_sec << " /s"
+				  << std::endl;
 	}
-
-	ss << "-----------------------------------------------------------------------------------------------------------------------"
-	   << "\n";
-
-	std::cout << ss.str () << std::endl;
 }
 
 void nano::test::rate_observer::observe (std::string name, std::function<int64_t ()> observe)
@@ -99,6 +86,7 @@ void nano::test::rate_observer::observe (std::string name, std::function<int64_t
 void nano::test::rate_observer::observe (nano::node & node, nano::stat::type type, nano::stat::detail detail, nano::stat::dir dir)
 {
 	auto name = std::string{ nano::to_string (type) } + "::" + std::string{ nano::to_string (detail) } + "::" + std::string{ nano::to_string (dir) };
+
 	observe (name, [&node, type, detail, dir] () {
 		return node.stats.count (type, detail, dir);
 	});

@@ -14,7 +14,7 @@ set(CMAKE_OSX_DEPLOYMENT_TARGET
     12
     CACHE STRING "")
 
-project(nano-node)
+project(raione-node)
 
 # Get the latest abbreviated commit hash of the working branch
 execute_process(
@@ -23,6 +23,7 @@ execute_process(
   OUTPUT_VARIABLE GIT_COMMIT_HASH
   OUTPUT_STRIP_TRAILING_WHITESPACE)
 
+option(CI_BUILD false)
 option(CI_VERSION_PRE_RELEASE false)
 
 set(COVERAGE
@@ -37,19 +38,18 @@ if(MSVC)
   add_definitions(/MP)
 endif()
 
-set(CPACK_PACKAGE_VENDOR "Nano Currency")
 set(CPACK_PACKAGE_VERSION_MAJOR "26")
 set(CPACK_PACKAGE_VERSION_MINOR "0")
 set(CPACK_PACKAGE_VERSION_PATCH "0")
-
-if(CI_VERSION_PRE_RELEASE)
+if(CI_BUILD AND CI_VERSION_PRE_RELEASE)
   set(CPACK_PACKAGE_VERSION_PRE_RELEASE "${CI_VERSION_PRE_RELEASE}")
 else()
   set(CPACK_PACKAGE_VERSION_PRE_RELEASE "99")
 endif()
+set(CPACK_PACKAGE_VENDOR "Nano Currency")
 
-if(CI_TAG)
-  set(TAG_VERSION_STRING "${CI_TAG}")
+if(CI_BUILD)
+  set(TAG_VERSION_STRING "$ENV{CI_TAG}")
 else()
   set(TAG_VERSION_STRING
       "V${CPACK_PACKAGE_VERSION_MAJOR}.${CPACK_PACKAGE_VERSION_MINOR}")
@@ -164,7 +164,7 @@ set_property(
   CACHE ACTIVE_NETWORK PROPERTY STRINGS nano_dev_network nano_beta_network
                                 nano_live_network nano_test_network)
 set(CPACK_PACKAGE_NAME
-    "nano-node"
+    "raione-node"
     CACHE STRING "" FORCE)
 set(CPACK_NSIS_PACKAGE_NAME
     "Nano"
@@ -175,9 +175,9 @@ set(CPACK_PACKAGE_INSTALL_DIRECTORY
 set(NANO_SERVICE "nanocurrency.service")
 set(NANO_PREFIX "")
 if("${ACTIVE_NETWORK}" MATCHES "nano_beta_network")
-  project("nano-node-beta")
+  project("raione-node-beta")
   set(CPACK_PACKAGE_NAME
-      "nano-node-beta"
+      "raione-node-beta"
       CACHE STRING "" FORCE)
   set(CPACK_NSIS_PACKAGE_NAME
       "Nano-Beta"
@@ -188,9 +188,9 @@ if("${ACTIVE_NETWORK}" MATCHES "nano_beta_network")
   set(NANO_SERVICE "nanocurrency-beta.service")
   set(NANO_PREFIX "Beta")
 elseif("${ACTIVE_NETWORK}" MATCHES "nano_test_network")
-  project("nano-node-test")
+  project("raione-node-test")
   set(CPACK_PACKAGE_NAME
-      "nano-node-test"
+      "raione-node-test"
       CACHE STRING "" FORCE)
   set(CPACK_NSIS_PACKAGE_NAME
       "Nano-Test"

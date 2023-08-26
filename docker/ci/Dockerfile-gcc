@@ -1,5 +1,5 @@
-ARG ENV_REPOSITORY=nanocurrency/nano-env
+ARG ENV_REPOSITORY=raiblocksone/raione-env
 FROM ${ENV_REPOSITORY}:base
 
-ARG REPOSITORY=nanocurrency/nano-node
+ARG REPOSITORY=raiblocksone/raione-node
 LABEL org.opencontainers.image.source https://github.com/$REPOSITORY

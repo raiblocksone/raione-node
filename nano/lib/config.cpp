@@ -27,9 +27,9 @@ struct HexTo
 } // namespace
 
 nano::work_thresholds const nano::work_thresholds::publish_full (
-0xffffffc000000000,
+0xffffffc000000000, 
 0xfffffff800000000, // 8x higher than epoch_1
-0xfffffe0000000000 // 8x lower than epoch_1
+0xfffffe0000000000  // 8x lower than epoch_1
 );
 
 nano::work_thresholds const nano::work_thresholds::publish_beta (

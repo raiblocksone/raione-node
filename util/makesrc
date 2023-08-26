@@ -8,7 +8,7 @@ if [ -e "${2}" ]; then
 fi
 
 TAG="${1}"
-repository="${2:-nanocurrency/nano-node}"
+repository="${2:-raiblocksone/raione-node}"
 VERSION=$(echo "${TAG}" | sed 's/V//' | sed 's/-/_/g')
 TAG_DATE=""
 scriptDir="$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")"
