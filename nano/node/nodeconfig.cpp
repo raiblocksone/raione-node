@@ -63,6 +63,7 @@ nano::node_config::node_config (const std::optional<uint16_t> & peering_port_a, 
 			//preconfigured_peers.emplace_back (default_live_peer_network);
 			preconfigured_peers.emplace_back ("5.75.155.89");
 			preconfigured_peers.emplace_back ("135.181.99.50");
+			preconfigured_peers.emplace_back ("202.61.252.163");
 			preconfigured_representatives.emplace_back ("17B4FB61A5384526D9F78F5ACD46268604289FEA60C68FA95F56958060440E8A");
 			preconfigured_representatives.emplace_back ("27450B6605F1638252EC08834EFF5DD679D3CE53B0418F8EB0AF2CA3AAE87154");
 			preconfigured_representatives.emplace_back ("DE82B719D3A7A18F8228B895777B4772E16CD200EB1929B8CF278961DAE1CF2E");

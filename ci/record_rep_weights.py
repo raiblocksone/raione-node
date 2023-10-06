@@ -9,11 +9,11 @@ parser = argparse.ArgumentParser(
     description='Generate bootstrap representative weight file.')
 parser.add_argument("output", type=str, help="output weight file")
 parser.add_argument("--rpc", help="node rpc host:port",
-                    default="http://[::1]:7076")
+                    default="http://127.0.0.1:7076/")
 parser.add_argument(
     "--limit", help="percentage of the active supply represented", default=0.99)
 parser.add_argument(
-    "--cutoff", help="stop using bootstrap reps this many blocks before the current block height", default=250000, type=int)
+    "--cutoff", help="stop using bootstrap reps this many blocks before the current block height", default=20000, type=int)
 args = parser.parse_args()
 
 r = requests.post(args.rpc, data='{"action":"representatives"}')
@@ -53,7 +53,7 @@ with open(args.output, 'wb') as of:
         if rep["weight"] == 0:
             break
         acc_val = int(hexlify(b32decode(rep["account"].encode(
-            'utf-8').replace(b"nano_", b"").translate(tbl) + b"====")), 16)
+            'utf-8').replace(b"xrb_", b"").translate(tbl) + b"====")), 16)
         acc_bytes = unhexlify("%064X" % (((acc_val >> 36) & ((1 << 256) - 1))))
         weight_bytes = unhexlify("%032X" % rep["weight"])
         of.write(acc_bytes)
