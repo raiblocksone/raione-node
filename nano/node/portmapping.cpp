@@ -199,7 +199,7 @@ void nano::port_mapping::check_mapping_loop ()
 	}
 	else
 	{
-		if (check_count < 10 || node.config.logging.upnp_details_logging ())
+		if (check_count < 3 || node.config.logging.upnp_details_logging ())
 		{
 			node.logger.always_log (boost::str (boost::format ("UPnP No IGD devices found")));
 		}
