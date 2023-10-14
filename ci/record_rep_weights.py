@@ -13,7 +13,7 @@ parser.add_argument("--rpc", help="node rpc host:port",
 parser.add_argument(
     "--limit", help="percentage of the active supply represented", default=0.99)
 parser.add_argument(
-    "--cutoff", help="stop using bootstrap reps this many blocks before the current block height", default=20000, type=int)
+    "--cutoff", help="stop using bootstrap reps this many blocks before the current block height", default=250000, type=int)
 args = parser.parse_args()
 
 r = requests.post(args.rpc, data='{"action":"representatives"}')
