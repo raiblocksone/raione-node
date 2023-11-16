@@ -30,7 +30,7 @@ void account_hex_impl (std::string const & account_hex, std::error_code & ec, BL
 	}
 	else
 	{
-		ec = nano::error_common::bad_account_number;
+		ec = nano::error_common::bad_account_number_hex;
 	}
 }
 

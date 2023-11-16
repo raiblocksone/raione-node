@@ -12,12 +12,12 @@ nano::account parse_account (std::string const & account, bool & out_is_deprecat
 	nano::account result{};
 	if (account.empty ())
 	{
-		throw nano::error (nano::error_common::bad_account_number);
+		throw nano::error (nano::error_common::bad_account_number_empty);
 	}
 
 	if (result.decode_account (account))
 	{
-		throw nano::error (nano::error_common::bad_account_number);
+		throw nano::error (nano::error_common::bad_account_number_action_handler);
 	}
 	else if (account[3] == '-' || account[4] == '-')
 	{
