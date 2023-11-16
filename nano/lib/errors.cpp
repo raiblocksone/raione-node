@@ -35,6 +35,10 @@ std::string nano::error_common_messages::message (int ev) const
 			return "Account not found in wallet";
 		case nano::error_common::bad_account_number:
 			return "Bad account number";
+		case nano::error_common::bad_account_number_hex_dest:
+			return "Bad account number_hex_dest";
+		case nano::error_common::bad_account_number_hex_dest:
+			return "Bad account number_dest";
 		case nano::error_common::bad_account_number_empty:
 			return "Bad account number_empty";
 		case nano::error_common::bad_account_number_action_handler:

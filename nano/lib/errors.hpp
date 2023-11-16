@@ -25,6 +25,8 @@ enum class error_common
 	bad_account_number_empty,
 	bad_account_number_action_handler,
 	bad_account_number_hex,
+	bad_account_number_hex_dest,
+	bad_account_number_dest,
 	bad_account_number_json,
 	bad_balance,
 	bad_link,
