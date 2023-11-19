@@ -37,7 +37,7 @@ std::string nano::error_common_messages::message (int ev) const
 			return "Bad account number.";
 		case nano::error_common::bad_account_number_hex_dest:
 			return "Bad account number_hex_dest";
-		case nano::error_common::bad_account_number_hex_dest:
+		case nano::error_common::bad_account_number_dest:
 			return "Bad account number_dest";
 		case nano::error_common::bad_account_number_empty:
 			return "Bad account number_empty";
