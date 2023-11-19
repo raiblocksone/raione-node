@@ -5,9 +5,6 @@
 #include <nano/lib/utility.hpp>
 #include <nano/secure/common.hpp>
 
-#include <nano/lib/logger_mt.hpp>
-#include <nano/node/logging.hpp>
-
 #include <crypto/ed25519-donna/ed25519.h>
 #include <cryptopp/aes.h>
 #include <cryptopp/modes.h>
@@ -88,7 +85,6 @@ bool nano::public_key::decode_account (std::string const & source_a)
 {
 	auto error (source_a.size () < 5);
 	if (!error)
-	logger.always_log (boost::str (boost::format ("looking for prefixes")));
 	{
 		auto xrb_prefix (source_a[0] == 'x' && source_a[1] == 'r' && source_a[2] == 'b' && (source_a[3] == '_' || source_a[3] == '-'));
 		auto xro_prefix (source_a[0] == 'x' && source_a[1] == 'r' && source_a[2] == 'o' && (source_a[3] == '_' || source_a[3] == '-'));
@@ -97,13 +93,11 @@ bool nano::public_key::decode_account (std::string const & source_a)
 		error = (xrb_prefix && source_a.size () != 64) || (xro_prefix && source_a.size () != 64) || (nano_prefix && source_a.size () != 65);
 		if (!error)
 		{
-		logger.always_log (boost::str (boost::format ("size of prefixes correct")));
 			if (xrb_prefix || xro_prefix || nano_prefix || node_id_prefix)
 			{
 				auto i (source_a.begin () + ((xrb_prefix || xro_prefix) ? 4 : 5));
 				if (*i == '1' || *i == '3')
 				{
-					logger.always_log (boost::str (boost::format ("i = 1 or 3")));
 					nano::uint512_t number_l;
 					for (auto j (source_a.end ()); !error && i != j; ++i)
 					{
@@ -122,7 +116,6 @@ bool nano::public_key::decode_account (std::string const & source_a)
 					}
 					if (!error)
 					{
-						logger.always_log (boost::str (boost::format ("no error yet")));
 						nano::public_key temp = (number_l >> 40).convert_to<nano::uint256_t> ();
 						uint64_t check (number_l & static_cast<uint64_t> (0xffffffffff));
 						uint64_t validation (0);
@@ -133,7 +126,6 @@ bool nano::public_key::decode_account (std::string const & source_a)
 						error = check != validation;
 						if (!error)
 						{
-							logger.always_log (boost::str (boost::format ("no error found")));
 							*this = temp;
 						}
 					}
