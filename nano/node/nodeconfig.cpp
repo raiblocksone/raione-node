@@ -62,7 +62,9 @@ nano::node_config::node_config (const std::optional<uint16_t> & peering_port_a, 
 		case nano::networks::nano_live_network:
 			//preconfigured_peers.emplace_back (default_live_peer_network);
 			preconfigured_peers.emplace_back ("49.12.8.179");
-			//ggf. + 49.12.8.179
+			preconfigured_peers.emplace_back ("49.13.72.217");
+			preconfigured_peers.emplace_back ("216.108.211.250");
+			preconfigured_peers.emplace_back ("70.92.149.88");
 			preconfigured_representatives.emplace_back ("17B4FB61A5384526D9F78F5ACD46268604289FEA60C68FA95F56958060440E8A"); //RaiOne-Vault
 			preconfigured_representatives.emplace_back ("5114CF116A65498C704A2CC98A7D62D42E4F81834C06C266E606713786983DE5"); //nanswap.com, Faucet
 			preconfigured_representatives.emplace_back ("FC5B06ED7330A735A2421F5280EB9F43448CFDFE508A4A064B5336295F441BEC"); //MyEcoria, Explorer
